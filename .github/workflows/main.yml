@@ -1,23 +1,26 @@
-name: Deploy to ECR
+name: Deploy to Amazon ECR
 
 on:
- 
   push:
-    branches: [ main ]
+    branches: [ "main" ]
+
+env:
+  ECR_REPOSITORY: multitenant           # set this to your Amazon ECR repository name
+                                    
+permissions:
+  contents: read
+  packages: write
 
 jobs:
-  
-  build:
-    
-    name: Build Image
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
-
-   
-    steps:
-
-    - name: Check out code
-      uses: actions/checkout@v2
     
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -30,10 +33,13 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Build, tag, and push image to Amazon ECR
+      id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: multitenant
-        IMAGE_TAG: test_ml_image
+        IMAGE_TAG: ${{ github.sha }}
       run: |
+        # Build a docker container and
+        # push it to ECR so that it can
+        # be deployed to ECS.
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
