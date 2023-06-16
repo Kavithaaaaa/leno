@@ -16,6 +16,7 @@ defaults:
 
 jobs:
   retrieve-variables:
+    runs-on: ubuntu-latest
     steps:
       - name: Retrieve Variables
         run: |
@@ -23,9 +24,9 @@ jobs:
           environment=$(echo "$API_RESPONSE" | jq -r '.environment')
           echo "environment=$environment" >> $GITHUB_ENV
 
-     - name: Use Variables
-       run: |
-         echo "environment : $environment"
+      - name: Use Variables
+        run: |
+          echo "environment : $environment"
 
 jobs:
   terraform-validate:
