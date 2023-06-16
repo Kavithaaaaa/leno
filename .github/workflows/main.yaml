@@ -14,7 +14,7 @@ defaults:
     shell: bash
 
 
-jobs:
+ jobs:
   retrieve-variables:
     runs-on: ubuntu-latest
     steps:
