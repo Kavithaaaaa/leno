@@ -1,19 +1,17 @@
-name: Terraform
-on:
+ name: Terraform
+ on:
   repository_dispatch:
     types: do-something
     paths-ignore:
       - README.md
       - .gitignore
-env:
+ env:
   AWS_REGION: us-east-1 
-permissions:
+ permissions:
   contents: read
-defaults:
+ defaults:
   run:
     shell: bash
-
-
  jobs:
   retrieve-variables:
     runs-on: ubuntu-latest
@@ -27,7 +25,7 @@ defaults:
       - name: Use Variables
         run: |
           echo "environment : $environment"
- jobs:
+ job:
   terraform-validate:
     runs-on: ubuntu-latest
     steps:
@@ -91,5 +89,5 @@ defaults:
           run: |
             terraform init
             terraform validate
-            terraform apply -var "environment=${{ env.environment }}" --auto-approve
+            terraform apply -var "environment= ${{ env.environment }}" --auto-approve
             echo "Apply completed successfully..."
