@@ -17,7 +17,6 @@ defaults:
 jobs:
   retrieve-variables:
     runs-on: ubuntu-latest
-
     steps:
       - name: Retrieve Variables
         run: |
