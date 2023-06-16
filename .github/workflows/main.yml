@@ -7,7 +7,7 @@ on:
       - .gitignore
 env:
   AWS_REGION: us-east-1 
-  environment: $sankar
+  environment: sankar
     
 permissions:
   contents: read
