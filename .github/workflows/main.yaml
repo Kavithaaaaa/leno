@@ -27,7 +27,6 @@ jobs:
       - name: Use Variables
         run: |
           echo "environment : $environment"
-
  jobs:
   terraform-validate:
     runs-on: ubuntu-latest
