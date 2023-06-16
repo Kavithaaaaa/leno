@@ -6,7 +6,8 @@ on:
       - README.md
       - .gitignore
 env:
-  environment: stag 
+  environment: stag
+  AWS_REGION: us-east-1 
 permissions:
   contents: read
 defaults:
