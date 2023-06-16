@@ -6,13 +6,28 @@ on:
       - README.md
       - .gitignore
 env:
-  environment: stag
   AWS_REGION: us-east-1 
 permissions:
   contents: read
 defaults:
   run:
     shell: bash
+
+
+jobs:
+  retrieve-variables:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Retrieve Variables
+        run: |
+          API_RESPONSE=$(curl -s -X GET https://api.github.com/repos/kavithaaaaa/leno/dispatches )
+          environment=$(echo "$API_RESPONSE" | jq -r '.environment')
+          echo "environment=$environment" >> $GITHUB_ENV
+
+     - name: Use Variables
+       run: |
+         echo "environment : $environment"
 
 jobs:
   terraform-validate:
