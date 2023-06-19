@@ -76,6 +76,7 @@ variable "vpc_single_nat_gateway" {
 variable "aws_region" {}
 variable "environment" {}
 variable "business_divsion" {}
+variable "state" {}
 
 
 
@@ -115,6 +116,7 @@ variable "cluster_endpoint_public_access_cidrs" {
   type        = list(string)
   default     = ["0.0.0.0/0"]
 }
+
 
 
 

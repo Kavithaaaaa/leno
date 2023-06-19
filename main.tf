@@ -111,14 +111,14 @@ resource "aws_eks_node_group" "eks_ng_private" {
   ami_type       = "AL2_x86_64"
   capacity_type  = "ON_DEMAND"
   disk_size      = 30
-  instance_types = ["t3.medium"]
+  instance_types = ["c4.xlarge"]
 
 
 
   scaling_config {
-    desired_size = 3
-    min_size     = 2
-    max_size     = 5
+    desired_size = 1
+    min_size     = 1
+    max_size     = 2
   }
 
 
@@ -131,11 +131,3 @@ resource "aws_eks_node_group" "eks_ng_private" {
     Name = "Private-Node-Group"
   }
 }
-
-
-
-
-
-
-
-

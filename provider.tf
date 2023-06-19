@@ -30,13 +30,12 @@ terraform {
 
   # Adding Backend as S3 for Remote State Storage
   backend "s3" {
-    bucket = "terraform-june"
-    key    = "eks-cluster/terraform.tfstate"
-    region = "us-east-1"
+    bucket = "devops-careeredge"
+    key    = "terraform/terraform.tfstate"
+    region = "us-east-2"
 
     # For State Locking
-    dynamodb_table = "demo-ekscluster"
+    dynamodb_table = "dynamo-devops"
   }
 }
-
 

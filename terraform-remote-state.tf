@@ -2,9 +2,11 @@
 data "terraform_remote_state" "eks" {
   backend = "s3"
   config = {
-    bucket = "terraform-june"
-    key    = "eks-cluster/terraform.tfstate"
-    region = "us-east-1"
+    bucket = "devops-careeredge"
+    key    = "terraform/terraform.tfstate"
+    region = "us-east-2"
   }
 }
+
+
 
