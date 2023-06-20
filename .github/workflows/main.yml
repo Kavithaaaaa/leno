@@ -66,4 +66,4 @@ jobs:
         run: |
           terraform init
           terraform validate
-          terraform plan --var "environment=$environment" -out
+          terraform plan --var "environment=$environment"
