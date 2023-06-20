@@ -18,9 +18,9 @@ jobs:
     steps:
       - name: Retrieve Variables
         env:
-          environment= ${{ github.event.client_payload.environment }}
+          ENVIRONMENT= ${{ github.event.client_payload.environment }}
         run: |
-          echo "${{ environment }}"
+          echo $ENVIRONMENT
 
   terraform-validate:
     runs-on: ubuntu-latest
@@ -62,8 +62,8 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       - name: terraform-plan
         env:
-           environment= ${{ github.event.client_payload.environment }}
+          ENVIRONMENT= ${{ github.event.client_payload.environment }}
         run: |
           terraform init
           terraform validate
-          terraform plan -var "environment=${{ environment }}" -out -input=false
+          terraform plan -var "environment=$ENVIRONMENT" -out -input=false
