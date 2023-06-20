@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Retrieve Variables
         env:
-          ENVIRONMENT= ${{ github.event.client_payload.environment }}
+          ENVIRONMENT: ${{ github.event.client_payload.environment }}
         run: |
           echo "environment=$ENVIRONMENT"
 
