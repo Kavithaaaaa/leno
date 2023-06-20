@@ -62,9 +62,8 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       - name: terraform-plan
         env:
-          environment= ${{ github.event.client_payload.environment }}
+          environment: ${{ github.event.client_payload.environment }}
         run: |
           terraform init
           terraform validate
           terraform plan -var "environment=$environment" -out -input=falsegit add .
-          
