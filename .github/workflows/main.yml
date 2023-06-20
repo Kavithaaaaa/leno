@@ -17,13 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Retrieve Variables
-        run: |
-          API_RESPONSE=$(curl -s -X GET https://api.github.com/repos/kavithaaaaa/leno/dispatches )
+      - env:
           environment= ${{ github.event.client_payload.environment }}
-          echo "environment= ${{ github.event.client_payload.environment }}" >> $GITHUB_ENV
-      - name: Use Variables
         run: |
-          echo "environment : $environment"
+          echo "${{ environment }}"
+
   terraform-validate:
     runs-on: ubuntu-latest
     steps:
@@ -63,7 +61,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
       - name: terraform-plan
+      - env:
+           environment= ${{ github.event.client_payload.environment }}
         run: |
           terraform init
           terraform validate
-          terraform plan -var "environment=${{ env.environment }}" -out -input=false
+          terraform plan -var "environment=${{ environment }}" -out -input=false
