@@ -20,7 +20,7 @@ jobs:
         run: |
           API_RESPONSE=$(curl -s -X GET https://api.github.com/repos/kavithaaaaa/leno/dispatches )
           environment= ${{ github.event.client_payload.environment }}
-          echo "environment=$environment" >> $GITHUB_ENV
+          echo "environment= ${{ github.event.client_payload.environment }}" >> $GITHUB_ENV
       - name: Use Variables
         run: |
           echo "environment : $environment"
