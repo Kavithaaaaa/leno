@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Retrieve Variables
-      - env:
+        env:
           environment= ${{ github.event.client_payload.environment }}
         run: |
           echo "${{ environment }}"
@@ -61,7 +61,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
       - name: terraform-plan
-      - env:
+        env:
            environment= ${{ github.event.client_payload.environment }}
         run: |
           terraform init
