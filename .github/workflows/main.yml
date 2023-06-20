@@ -20,7 +20,7 @@ jobs:
         env:
           ENVIRONMENT= ${{ github.event.client_payload.environment }}
         run: |
-          echo environment=$ENVIRONMENT
+          echo "environment=$ENVIRONMENT"
 
   terraform-validate:
     runs-on: ubuntu-latest
